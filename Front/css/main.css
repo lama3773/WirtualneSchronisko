@@ -1,0 +1,31 @@
+.book_table {
+    width:100%;
+    margin-top:20px;
+}
+
+th.book_row {
+    font-size:30px;
+}
+
+td.book_row {
+    padding-top:20px;
+    font-size:20px;
+}
+
+.header_title {
+    font-size:50px;
+}
+
+.middle_action_header {
+    padding:50px;
+}
+
+.new-book-form {
+    display:block
+}
+.author_info {
+    margin-left: auto;
+    margin-right: auto;
+    display: table;
+    padding: 50px
+}
