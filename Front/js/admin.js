@@ -1,4 +1,4 @@
-function AddBook() {
+function AddItem() {
     var url = "http://localhost:8080/dashboard";
     document.getElementById("message_admin").innerHTML = "";
     if (getCookie('role') === "ROLE_ADMIN") {
@@ -10,10 +10,10 @@ function AddBook() {
         http_request.onload = function (xhr) {
             if (xhr.target.status == 200) {
                 var data = JSON.parse(xhr.target.response);
-                document.getElementById("modify_book_table_header").style.visibility = "visible";
-                document.getElementById("modify_book_table_title").textContent = "Dodano nową książkę:";
+                document.getElementById("modify_animals_table_header").style.visibility = "visible";
+                document.getElementById("modify_animals_table_title").textContent = "Dodano nową książkę:";
 
-                document.getElementById("table_modified_book").innerHTML =
+                document.getElementById("table_modified_animals").innerHTML =
                     "<tr>" + "<th>" + "Tytuł" + "</th>" + "<th>" + "Autor" + "</th>" + "<th>" + "Data wydania" + "</th>" + "</tr>" +
                     "<tr>" + "<td>" + data.book.title + "</td>" + "<td>" + data.book.author + "</td>" + "<td>" + data.book.releaseDate + "</td>" + "</tr>";
                 loadFromApi(true);
@@ -36,7 +36,7 @@ function AddBook() {
         http_request.setRequestHeader('Content-type', 'application/json');
         http_request.send(JSON.stringify(params));
     } else {
-        document.getElementById("message_dashboard").innerHTML = "Dodawanie książek jest dostępna jedynie dla administratorów."
+        document.getElementById("message_dashboard").innerHTML = "Dodawanie zwierząt jest dostępna jedynie dla administratorów."
     }
 }
 
@@ -49,18 +49,18 @@ function RemoveBook(bookId) {
         http_request.onload = function (xhr) {
             if (xhr.target.status == 200) {
                 var data = JSON.parse(xhr.target.response);
-                document.getElementById("modify_book_table_header").style.visibility = "visible";
-                document.getElementById("modify_book_table_title").textContent = "Usunięto książkę:";
-                document.getElementById("table_modified_book").innerHTML =
+                document.getElementById("modify_animals_table_header").style.visibility = "visible";
+                document.getElementById("modify_animals_table_title").textContent = "Usunięto pozycję:";
+                document.getElementById("table_modified_animals").innerHTML =
                     "<tr>" + "<th>" + "Tytuł" + "</th>" + "<th>" + "Autor" + "</th>" + "<th>" + "Data wydania" + "</th>" + "</tr>" +
                     "<tr>" + "<td>" + data.book.title + "</td>" + "<td>" + data.book.author + "</td>" + "<td>" + data.book.releaseDate + "</td>" + "</tr>";
                 loadFromApi(true);
 
             } else {
                 if (xhr.target.status == 401) {
-                    document.getElementById("message_admin").innerHTML = "Usuwanie książek jest dostępne jedynie dla administratorów."
+                    document.getElementById("message_admin").innerHTML = "Usuwanie zwierząt jest dostępne jedynie dla administratorów."
                 } else {
-                    document.getElementById("message_admin").innerHTML = "Wystąpił problem przy próbie usunięcia książki."
+                    document.getElementById("message_admin").innerHTML = "Wystąpił problem przy próbie usunięcia pozycji."
                 }
             }
         };
@@ -69,6 +69,6 @@ function RemoveBook(bookId) {
         http_request.setRequestHeader('Content-type', 'application/json');
         http_request.send();
     } else {
-        document.getElementById("message_dashboard").innerHTML = "Usuwanie książek jest dostępna jedynie dla administratorów."
+        document.getElementById("message_dashboard").innerHTML = "Usuwanie zwierząt jest dostępna jedynie dla administratorów."
     }
 }

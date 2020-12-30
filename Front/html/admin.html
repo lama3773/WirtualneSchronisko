@@ -10,7 +10,7 @@
     <script type="text/javascript" src="../js/admin.js"></script>
     <script type="text/javascript" src="../js/dashboard.js"></script>
 
-    <title>Wirtualna biblioteka</title>
+    <title>Wirtualne Schronisko</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +22,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Wirtualna Biblioteka</a>
+        <a class="navbar-brand" href="index.html">Wirtualne Schronisko</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                 aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul id="navbar-nav" class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Biblioteka</a>
+                    <a class="nav-link" href="index.html">Schronisko</a>
                 </li>
                 <li class="nav-item" id="nav-link-autor">
                     <a class="nav-link" href="author.html">o Autorze</a>
@@ -53,25 +53,36 @@
     </div>
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h1 class="mt-5 header_title">Wirtualna Biblioteka</h1>
+            <h1 class="mt-5 header_title">Wirtualne Schronisko</h1>
             <div id="message_dashboard"></div>
-            <button type="button" class="btn btn-primary" onClick={loadFromApi(true)}>Pobierz aktualną listę książek</button>
-            <table id="table_books" class="book_table"></table>
-            <div id="modify_book_table_header" class="book_table" style="visibility:hidden">
-                <h3 id="modify_book_table_title"></h3>
+            <button type="button" class="btn btn-primary" onClick={loadFromApi(true)}>Pobierz aktualną listę zwierząt</button>
+            <table id="table_books" class="animals_table"></table>
+            <div id="modify_animals_table_header" class="animals_table" style="visibility:hidden">
+                <h3 id="modify_animals_table_title"></h3>
             </div>
-            <table id="table_modified_book" class="book_table"></table>
+            <table id="table_modified_animals" class="animals_table"></table>
 
-            <h1 class="header_title middle_action_header">Dodaj nową książkę</h1>
+            <h1 class="header_title middle_action_header">Dodaj nową pozycję</h1>
             <div id="message_admin"></div>
             <div class="row new-book-form">
-                <input type="text" class="textbox" id="title" name="title" placeholder="Tytuł"/>
+                <input type="text" class="textbox" id="name" name="name" placeholder="Name"/>
 
-                <input type="text" class="textbox" id="author" name="author" placeholder="Autor"/>
+                <input type="text" class="textbox" id="breed" name="breed" placeholder="Rasa"/>
 
-                <input type="date" id="releaseDate" name="releaseDate" min="1800-01-01">
+                <input type="text" class="textbox" id="age" name="age" placeholder="Wiek">
 
-                <button type="button" class="btn btn-primary" onClick={AddBook()}>Dodaj książkę</button>
+                <select type="select" id="category" name="category">
+                    <optgroup label="Psy">
+                        <option value="small_dogs">Małe Psy</option>
+                        <option value="big_dogs">Duże Psy</option>
+                    </optgroup>
+                    <optgroup label="Koty">
+                        <option value="small_cats">Małe Koty</option>
+                        <option value="big_cats">Duże Koty</option>
+                    </optgroup>
+                    <option value="other">Inne</option>
+                </select>
+                <button type="button" class="btn btn-primary" onClick={AddItem()}>Dodaj pozycję</button>
             </div>
         </div>
     </div>
