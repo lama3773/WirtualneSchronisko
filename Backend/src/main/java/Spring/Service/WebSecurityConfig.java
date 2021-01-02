@@ -40,7 +40,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             .antMatchers(HttpMethod.GET, "/dashboard").hasAnyRole("ADMIN", "USER")
-            .antMatchers(HttpMethod.POST, "/dashboard").hasRole("ADMIN")
+            .antMatchers(HttpMethod.POST, "/dashboard", "/upload").hasRole("ADMIN")
             .antMatchers(HttpMethod.DELETE, "/dashboard").hasRole("ADMIN")
             .and()
             .csrf().disable()

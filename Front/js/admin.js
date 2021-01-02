@@ -72,3 +72,34 @@ function RemoveBook(bookId) {
         document.getElementById("message_dashboard").innerHTML = "Usuwanie zwierząt jest dostępna jedynie dla administratorów."
     }
 }
+
+function ImageUpload() {
+    var formData = new FormData();
+    var file = document.getElementById("file-input-image").files[0];
+    formData.append("file", file);
+
+    var url = "http://localhost:8080/upload";
+    if (getCookie('role') === "ROLE_ADMIN") {
+        http_request = new XMLHttpRequest();
+        http_request.onload = function (xhr) {
+            console.log(xhr.target.status);
+            if (xhr.target.status == 200) {
+                console.log('success2');
+                console.log(xhr.returnValue);
+                document.getElementById("preview img").style.visibility = "visible";
+                document.getElementById("preview img").src = xhr.target.response;
+                document.getElementById("file-input-image-src").value = xhr.target.response;
+                // $("#img").attr("src", xhr.returnValue);
+                // $(".preview img").show(); // Display image element
+            } else {
+                console.log('else');
+                alert('file not uploaded');
+            }
+        };
+        http_request.open('POST', url, true);
+        http_request.setRequestHeader("Authorization", "Basic " + btoa(getCookie("username") + ":" + getCookie("password")));
+        http_request.send(formData);
+    } else {
+        document.getElementById("message_dashboard").innerHTML = "Dodawanie zwierząt jest dostępna jedynie dla administratorów."
+    }
+}
