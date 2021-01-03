@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
-@EnableJpaRepositories("Spring.Service")
+@EnableJpaRepositories("Spring.Entity")
 @ComponentScan(basePackages = {"Spring.Service"})
 public class ApplicationStarter {
 

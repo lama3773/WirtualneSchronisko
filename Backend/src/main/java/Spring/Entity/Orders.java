@@ -1,4 +1,4 @@
-package Spring.Service;
+package Spring.Entity;
 
 import javax.persistence.*;
 import java.sql.Date;

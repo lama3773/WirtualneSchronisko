@@ -1,4 +1,4 @@
-package Spring.Service;
+package Spring.Entity;
 
 import javax.persistence.*;
 
@@ -14,10 +14,11 @@ public class Users {
 
     private Integer role;
 
+    private Integer address_id;
+
     public Integer getId() {
         return id;
     }
-    
 
     public String getUsername() {
         return username;
@@ -41,5 +42,13 @@ public class Users {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public Integer getAddressId() {
+        return address_id;
+    }
+
+    public void setAddressId(Integer address_id) {
+        this.address_id = address_id;
     }
 }
