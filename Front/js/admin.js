@@ -1,7 +1,7 @@
 function AddItem() {
     var url = "http://localhost:8080/dashboard";
     document.getElementById("message_admin").innerHTML = "";
-    if (getCookie('role') === "ROLE_ADMIN") {
+    if (getCookie('role') === "ROLE_1") { //admin
         var title = document.getElementById('title').value,
             author = document.getElementById('author').value,
             releaseDate = document.getElementById('releaseDate').value;
@@ -43,7 +43,7 @@ function AddItem() {
 function RemoveBook(bookId) {
     var url = "http://localhost:8080/dashboard/";
     document.getElementById("message_admin").innerHTML = "";
-    if (getCookie('role') === "ROLE_ADMIN") {
+    if (getCookie('role') === "ROLE_1") { //admin
 
         http_request = new XMLHttpRequest();
         http_request.onload = function (xhr) {
@@ -79,7 +79,7 @@ function ImageUpload() {
     formData.append("file", file);
 
     var url = "http://localhost:8080/upload";
-    if (getCookie('role') === "ROLE_ADMIN") {
+    if (getCookie('role') === "ROLE_1") { //admin
         http_request = new XMLHttpRequest();
         http_request.onload = function (xhr) {
             console.log(xhr.target.status);

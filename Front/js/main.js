@@ -58,7 +58,7 @@ function addProtectedResources(page) {
         document.getElementById("table_books").style.visibility = "hidden";
 
     } else {
-        if (userRole === 'ROLE_USER') {
+        if (userRole === 'ROLE_2') { //user
             if (page === "admin") {
                 window.location = 'index.html';
             }
@@ -70,7 +70,7 @@ function addProtectedResources(page) {
             document.getElementById("table_books").style.visibility = "visible";
         }
 
-        if (userRole === 'ROLE_ADMIN') {
+        if (userRole === 'ROLE_1') { //admin
             //admin
             document.getElementById("nav-link-admin").style.visibility = "visible";
             document.getElementById("div_login").style.visibility = "hidden";

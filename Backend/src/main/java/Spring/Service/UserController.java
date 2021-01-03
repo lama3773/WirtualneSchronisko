@@ -1,7 +1,7 @@
 package Spring.Service;
 
 import Spring.Entity.UserRepository;
-import Spring.Entity.Users;
+import Spring.Entity.User;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,7 +15,7 @@ public class UserController {
     @PostMapping("/add")
     public @ResponseBody String addNewUser (@RequestParam String name, @RequestParam String password) {
 
-        Users n = new Users();
+        User n = new User();
         n.setUsername(name);
         n.setPassword(password);
         n.setRole(1);
@@ -24,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public @ResponseBody Iterable<Users> getAllUsers() {
+    public @ResponseBody Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }
 }

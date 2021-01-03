@@ -1,12 +1,12 @@
 function loadFromApi(isAdmin) {
     var url = "http://localhost:8080/dashboard";
-    if (getCookie('role') === "ROLE_USER" || getCookie('role') === "ROLE_ADMIN")
+    if (getCookie('role') === "ROLE_2" || getCookie('role') === "ROLE_1")
     {
         http_request = new XMLHttpRequest();
         http_request.onload = function(xhr) {
             if (xhr.target.status == 200) {
                 var data = JSON.parse(xhr.target.response);
-                if (isAdmin && getCookie('role') === "ROLE_ADMIN") {
+                if (isAdmin && getCookie('role') === "ROLE_1") {
                     document.getElementById("table_books").innerHTML =
                         "<tr>" + "<th class='book_row'>" + "Tytuł" + "</th>" + "<th class='book_row'>" + "Autor" + "</th>" + "<th class='book_row'>" + "Data wydania" + "</th>"+ "<th class='book_row'>" + "Akcja" + "</th>" + "</tr>" +
                         data.books.map(
