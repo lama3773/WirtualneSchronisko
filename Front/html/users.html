@@ -7,7 +7,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <script type="text/javascript" src="../js/main.js"></script>
+    <script type="text/javascript" src="../js/users.js"></script>
     <script type="text/javascript" src="../js/dashboard.js"></script>
+
     <title>Wirtualne Schronisko</title>
 
     <!-- Bootstrap core CSS -->
@@ -16,7 +18,7 @@
 
 </head>
 
-<body onload="addProtectedResources()">
+<body onload="addProtectedResources('admin')">
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
     <div class="container">
@@ -27,16 +29,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul id="navbar-nav" class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Schronisko
-                        <span class="sr-only">(current)</span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Schronisko</a>
                 </li>
                 <li class="nav-item" id="nav-link-author">
                     <a class="nav-link" href="author.html">o Autorze</a>
                 </li>
-                <li class="nav-item" id="nav-link-users" style="visibility: hidden">
-                    <a class="nav-link" href="users.html">Użytkownicy</a>
+                <li class="nav-item active" id="nav-link-users" style="visibility: hidden">
+                    <a class="nav-link" href="users.html">Użytkownicy
+                        <span class="sr-only">(current)</span>
+                    </a>
                 </li>
                 <li class="nav-item" id="nav-link-admin" style="visibility: hidden">
                     <a class="nav-link" href="admin.html">Admin</a>
@@ -48,44 +50,34 @@
 <!-- Page Content -->
 <div class="container">
     <div id="div_login" style="float: right; visibility: visible">
-        <h1>Logowanie</h1>
-        <div id="message_login"></div>
-        <div>
-            <input type="text" class="textbox" id="username" name="username" placeholder="Username" required/>
-        </div>
-        <div>
-            <input type="password" class="textbox" id="password" name="password" placeholder="Password" required/>
-        </div>
-        <div>
-            <button type="button" class="btn btn-primary" onClick={login()}>Zaloguj</button>
-        </div>
-    </div>
-    <div id="div_register" style="float: right; visibility: visible; clear:both; margin-top: 2%">
-        <h1>Rejestracja</h1>
-        <div id="message_register"></div>
-        <div>
-            <input type="text" class="textbox" id="new_email" name="new_email" placeholder="Email" required/>
-        </div>
-        <div>
-            <input type="text" class="textbox" id="new_username" name="new_username" placeholder="Username" required/>
-        </div>
-        <div>
-            <input type="password" class="textbox" id="new_password" name="new_password" placeholder="Password" required/>
-        </div>
-        <div>
-            <button type="button" class="btn btn-primary" onClick={register()}>Zarejestruj</button>
-        </div>
     </div>
     <div id="div_logout" style="float: right; visibility: hidden">
         <button type="button" class="btn btn-primary" onClick={logout()}>Wyloguj</button>
     </div>
     <div class="row">
         <div class="col-lg-12 text-center">
-            <h1 class="mt-5 header_title">Wirtualne Schronisko</h1>
-            <div id="message_dashboard"></div>
-            <button id="button-book-list" type="button" class="btn btn-primary" onClick={loadFromApi()} style="visibility: hidden">Pobierz aktualną listę książek</button>
-            <table id="table_books" class="animals_table" >
-            </table>
+            <div id="message_users"></div>
+            <button type="button" class="btn btn-primary" onClick={loadUsers()}>Pobierz listę wszystkich użytkowników</button>
+            <button type="button" class="btn btn-primary" onClick={loadUsers(true)}>Pobierz listę niezatwierdzonych użytkowników</button>
+            <table id="table_users" class="users_table"></table>
+            <div id="modify_users_table_header" class="users_table" style="visibility:hidden">
+                <h3 id="modify_users_table_title"></h3>
+            </div>
+            <table id="table_modified_users" class="users_table"></table>
+
+            <h1 class="header_title middle_action_header">Dodaj nowego usera</h1>
+            <div id="message_admin"></div>
+            <div class="row new-user-form">
+                <input type="text" class="textbox" id="username" name="username" placeholder="Name"/>
+
+                <input type="password" class="textbox" id="password" name="password" placeholder="Hasło"/>
+
+                <input type="text" class="textbox" id="email" name="email" placeholder="Email"/>
+
+                <input type="text" class="textbox" id="role" name="role" placeholder="Rola">
+
+                <button type="button" class="btn btn-primary" onClick={AddUser()}>Dodaj pozycję</button>
+            </div>
         </div>
     </div>
 </div>
@@ -93,7 +85,5 @@
 <!-- Bootstrap core JavaScript -->
 <script src="../vendor/jquery/jquery.slim.min.js"></script>
 <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
-
 </html>

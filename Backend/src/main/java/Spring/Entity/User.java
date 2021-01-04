@@ -5,15 +5,18 @@ import javax.persistence.*;
 @Entity
 public class User {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-
+    @Column(name = "username")
     private String username;
 
+    @Column(name = "password")
     private String password;
 
+    @Column(name = "role")
     private Integer role;
 
+    @Column(name = "address_id")
     private Integer address_id;
 
     public Integer getId() {

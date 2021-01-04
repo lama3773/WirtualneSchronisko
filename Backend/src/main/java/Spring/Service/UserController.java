@@ -12,19 +12,27 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @PostMapping("/add")
-    public @ResponseBody String addNewUser (@RequestParam String name, @RequestParam String password) {
+    @CrossOrigin
+    @PostMapping("/register")
+    public @ResponseBody String addNewUser(@RequestParam String email, @RequestParam String username, @RequestParam String password) {
 
-        User n = new User();
-        n.setUsername(name);
-        n.setPassword(password);
-        n.setRole(1);
-        userRepository.save(n);
+        User newUser = new User();
+        newUser.setUsername(username);
+        newUser.setPassword(password);
+        newUser.setRole(0);
+        userRepository.save(newUser);
         return "Saved";
     }
 
-    @GetMapping("/all")
+    @CrossOrigin
+    @GetMapping("/users/all")
     public @ResponseBody Iterable<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    @CrossOrigin
+    @GetMapping("/users/newones")
+    public @ResponseBody Iterable<User> getAllNotConfirmedUsers() {
+        return userRepository.findByRole(0);
     }
 }

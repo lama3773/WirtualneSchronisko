@@ -25,6 +25,26 @@ function login() {
     http_request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     http_request.send(params);
 }
+function register() {
+    var url = "http://localhost:8080/register";
+    var username = document.getElementById('new_username').value,
+        password = document.getElementById('new_password').value,
+        email = document.getElementById('new_email').value;
+
+    http_request = new XMLHttpRequest();
+    http_request.onload = function (xhr) {
+        if (xhr.target.status == 200) {
+            alert("Wysłano prośbę o zatwierdzenie konta użytkownika.")
+        } else {
+            document.getElementById("message_register").innerHTML = "Wystąpił problem przy próbie rejestracji. Skontaktuj się z administratorem"
+        }
+    };
+    const params = "username=" + username + "&password="+password + "&email=" + email;
+
+    http_request.open('POST', url, true);
+    http_request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    http_request.send(params);
+}
 
 function logout() {
     let url = "http://localhost:8080/logout";
@@ -52,7 +72,9 @@ function addProtectedResources(page) {
         }
         //guest
         document.getElementById("nav-link-admin").style.visibility = "hidden";
+        document.getElementById("nav-link-users").style.visibility = "hidden";
         document.getElementById("div_login").style.visibility = "visible";
+        document.getElementById("div_register").style.visibility = "visible";
         document.getElementById("div_logout").style.visibility = "hidden";
         document.getElementById("button-book-list").style.visibility = "hidden";
         document.getElementById("table_books").style.visibility = "hidden";
@@ -64,7 +86,9 @@ function addProtectedResources(page) {
             }
             //user
             document.getElementById("nav-link-admin").style.visibility = "hidden";
+            document.getElementById("nav-link-users").style.visibility = "hidden";
             document.getElementById("div_login").style.visibility = "hidden";
+            document.getElementById("div_register").style.visibility = "hidden";
             document.getElementById("div_logout").style.visibility = "visible";
             document.getElementById("button-book-list").style.visibility = "visible";
             document.getElementById("table_books").style.visibility = "visible";
@@ -73,7 +97,9 @@ function addProtectedResources(page) {
         if (userRole === 'ROLE_1') { //admin
             //admin
             document.getElementById("nav-link-admin").style.visibility = "visible";
+            document.getElementById("nav-link-users").style.visibility = "visible";
             document.getElementById("div_login").style.visibility = "hidden";
+            document.getElementById("div_register").style.visibility = "hidden";
             document.getElementById("div_logout").style.visibility = "visible";
             document.getElementById("button-book-list").style.visibility = "visible";
             document.getElementById("table_books").style.visibility = "visible";
