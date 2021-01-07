@@ -3,8 +3,10 @@ package Spring.Service;
 import Spring.Entity.Animals;
 import Spring.Entity.AnimalsRepository;
 
+import Spring.Entity.User;
 import com.google.gson.Gson;
 import Spring.Model.GetDashboardResponse;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.ejb.NoSuchEntityException;
@@ -27,6 +29,14 @@ public class AnimalsController {
         }
         return animalsRepository.findAll();
     }
+    @CrossOrigin
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/animals/{animalId}")
+    public @ResponseBody
+    Animals getAnimal(@PathVariable Integer animalId) {
+        return animalsRepository.findItemById(animalId);
+    }
+
     @CrossOrigin
     @PutMapping("/animals/{id}")
     public String doPut(@RequestBody Animals newAnimal) {
