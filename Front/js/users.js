@@ -42,7 +42,7 @@ function ModifyUser() {
             alert("Zapsiano użytkownika.");
             loadUsers();
         } else {
-            document.getElementById("message_users").innerHTML = "Wystąpił problem przy próbie rejestracji użytkownika"
+            document.getElementById("message_users").innerHTML = "Wystąpił problem przy próbie edycji użytkownika"
         }
     };
     const params = {
@@ -53,7 +53,7 @@ function ModifyUser() {
         "role": role,
         "address": address
     }
-    http_request.open('PUT', url + user_id +'?XDEBUG_SESSION_START=1', true);
+    http_request.open('PUT', url + user_id, true);
     http_request.setRequestHeader('Content-type', 'application/json');
     http_request.setRequestHeader("Authorization", "Basic " + btoa(getCookie("username") + ":" + getCookie("password")));
     http_request.send(JSON.stringify(params));

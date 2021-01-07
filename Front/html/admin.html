@@ -83,7 +83,7 @@
                     </optgroup>
                     <option value="other">Inne</option>
                 </select>
-                <button type="button" class="btn btn-primary" onClick={AddItem()}>Dodaj pozycję</button>
+                <button type="button" class="btn btn-primary" onClick={AddAnimal()}>Dodaj pozycję</button>
             </div>
             <div id="message_dashboard"></div>
             <button type="button" class="btn btn-primary" onClick={loadFromApi(true)}>Pobierz aktualną listę zwierząt</button>
@@ -97,6 +97,10 @@
                 <h1 class="header_title middle_action_header">Edytuj zwierzę</h1>
                 <div id="message_animals_edit"></div>
                 <div class="row edit-animal-form">
+                    <div>
+                        <h3>ID</h3>
+                        <input class="textbox" id="edit_id" name="edit_id" disabled/>
+                    </div>
                     <div>
                         <h3>Zdjęcie</h3>
                     <input type="file" id="edit_img" name="edit_img" />
@@ -124,10 +128,9 @@
                                 <option value="small_cats">Małe Koty</option>
                                 <option value="big_cats">Duże Koty</option>
                             </optgroup>
-                            <option value="other">Inne</option>
                         </select>
                     </div>
-                    <div>
+                    <div style="margin-left: 20px">
                         <h3>Zakończ edycję</h3>
                         <button type="button" class="btn btn-primary" onClick={ModifyAnimal()}>Zapisz zmiany</button>
                     </div>

@@ -14,6 +14,7 @@ function loadFromApi(isAdmin) {
                         "<th class='animal_row'>" + "Nazwa" + "</th>" +
                         "<th class='animal_row'>" + "Rasa" + "</th>" +
                         "<th class='animal_row'>" + "Wiek" + "</th>"+
+                        "<th class='animal_row'>" + "Kategoria" + "</th>"+
                         "<th class='animal_row'>" + "Edytuj" + "</th>" +
                         "<th class='animal_row'>" + "Usuń" + "</th>" +
                         "</tr>" +
@@ -24,6 +25,7 @@ function loadFromApi(isAdmin) {
                                     "<td class='animal_row'>" + val.id + "</td>" +
                                     "<td class='animal_row'>" + val.name + "</td>" +
                                     "<td class='animal_row'>" + val.breed + "</td>" +
+                                    "<td class='animal_row'>" + CategoryMapper(val.category) + "</td>" +
                                     "<td class='animal_row'>" + val.age + "</td>"+
                                     "<td><button type=\"button\" class=\"btn btn-primary\" onClick={EditAnimalForm(" + val.id + ")}>Edytuj</button></td>" +
                                     "<td><button type=\"button\" class=\"btn btn-primary\" onClick={RemoveAnimal(" + val.id + ")}>Usuń</button></td>" +
@@ -37,6 +39,7 @@ function loadFromApi(isAdmin) {
                         "<th class='animal_row'>" + "Nazwa" + "</th>" +
                         "<th class='animal_row'>" + "Rasa" + "</th>" +
                         "<th class='animal_row'>" + "Wiek" + "</th>" +
+                        "<th class='animal_row'>" + "Kategoria" + "</th>" +
                         "<th class='animal_row'>" + "Akcja" + "</th>" +
                         "</tr>" +
                         data.map(
@@ -46,6 +49,7 @@ function loadFromApi(isAdmin) {
                                     "<td class='animal_row'>" + val.name + "</td>" +
                                     "<td class='animal_row'>" + val.breed + "</td>" +
                                     "<td class='animal_row'>" + val.age + "</td>" +
+                                    "<td class='animal_row'>" + CategoryMapper(val.category) + "</td>" +
                                     "<td><button type=\"button\" class=\"btn btn-primary\" onClick={OrderAnimal(" + val.id + ")}>Adoptuj</button></td>" +
                                     "</tr>";
                             }).join('')
@@ -91,40 +95,13 @@ function OrderAnimal(animal_id) {
     http_request.setRequestHeader('Content-type', 'application/json');
     http_request.send(JSON.stringify(params));
 }
-
-
-function EditAnimalForm(user_id) {
-    document.getElementById("modify_animals_container").style.visibility = "hidden";
-    if (getCookie('role') === "ROLE_1")
-    {
-        var url = "http://localhost:8080/users/";
-        http_request = new XMLHttpRequest();
-        http_request.onload = function(xhr) {
-            console.log(xhr.target.status);
-
-            if (xhr.target.status == 200) {
-                var data = JSON.parse(xhr.target.response);
-                console.log(data);
-                document.getElementById("modify_user_container").style.visibility = "visible";
-                document.getElementById("edit_id").value = user_id;
-                document.getElementById("edit_username").value = data.username;
-                document.getElementById("edit_password").value = data.password;
-                document.getElementById("edit_email").value = data.email;
-                document.getElementById("edit_address").value = data.address;
-                let options = document.getElementById("edit_role").options;
-                options[data.role].selected = true;
-            } else {
-                if (xhr.target.status == 401) {
-                    document.getElementById("message_users_edit").innerHTML = "Edycja użytkowników jest dostępna jedynie dla administratorów."
-                } else {
-                    document.getElementById("message_users_edit").innerHTML = "Wystąpił problem przy próbie edycji użytkownika."
-                }
-            }
-        };
-        http_request.open('GET', url + user_id, true);
-        http_request.setRequestHeader("Authorization", "Basic " + btoa(getCookie("username") + ":" +  getCookie("password")));
-        http_request.send(null);
-    } else {
-        document.getElementById("message_users_edit").innerHTML = "Edycja użytkowników jest dostępna jedynie dla administratorów."
-    }
+function CategoryMapper(category)
+{
+    let categories = {
+        "small_cats": "Małe Koty",
+        "small_dogs": "Małe Psy",
+        "big_cats": "Duże Koty",
+        "big_dogs": "Duże Psy"
+    };
+    return categories[category];
 }
