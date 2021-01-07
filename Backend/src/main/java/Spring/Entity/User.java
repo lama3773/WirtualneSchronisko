@@ -1,6 +1,7 @@
 package Spring.Entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class User {
@@ -13,11 +14,17 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "role")
     private Integer role;
 
-    @Column(name = "address_id")
-    private Integer address_id;
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "created")
+    private Date created;
 
     public Integer getId() {
         return id;
@@ -47,11 +54,27 @@ public class User {
         this.role = role;
     }
 
-    public Integer getAddressId() {
-        return address_id;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAddressId(Integer address_id) {
-        this.address_id = address_id;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Date getCreated() {
+        return created;
+    }
+
+    public void setCreated(Date created) {
+        this.created = created;
     }
 }
