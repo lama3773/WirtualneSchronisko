@@ -5,9 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="orders" content="">
     <script type="text/javascript" src="../js/main.js"></script>
-    <script type="text/javascript" src="../js/dashboard.js"></script>
+    <script type="text/javascript" src="../js/orders.js"></script>
     <title>Wirtualne Schronisko</title>
 
     <!-- Bootstrap core CSS -->
@@ -27,10 +27,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul id="navbar-nav" class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="index.html">Schronisko
-                        <span class="sr-only">(current)</span>
-                    </a>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Schronisko</a>
                 </li>
                 <li class="nav-item" id="nav-link-author">
                     <a class="nav-link" href="author.html">o Autorze</a>
@@ -38,8 +36,10 @@
                 <li class="nav-item" id="nav-link-users" style="visibility: hidden">
                     <a class="nav-link" href="users.html">Użytkownicy</a>
                 </li>
-                <li class="nav-item" id="nav-link-orders" style="visibility: hidden">
-                    <a class="nav-link" href="orders.html">Zamówienia</a>
+                <li class="nav-item active" id="nav-link-orders" style="visibility: hidden">
+                    <a class="nav-link" href="orders.html">Zamówienia
+                        <span class="sr-only">(current)</span>
+                    </a>
                 </li>
                 <li class="nav-item" id="nav-link-admin" style="visibility: hidden">
                     <a class="nav-link" href="admin.html">Admin</a>
@@ -85,10 +85,13 @@
     <div class="row">
         <div class="col-lg-12 text-center">
             <h1 class="mt-5 header_title">Wirtualne Schronisko</h1>
-            <div id="message_dashboard"></div>
-            <button id="button-book-list" type="button" class="btn btn-primary" onClick={loadFromApi()} style="visibility: hidden">Pobierz aktualną listę zwierząt</button>
-            <table id="table_animals" class="animals_table" >
+            <div id="message_orders"></div>
+            <button id="button-book-list" type="button" class="btn btn-primary" onClick={loadOrders()} style="visibility: hidden">Pobierz aktualną listę zamówień.</button>
+            <table id="table_orders" class="orders_table" >
             </table>
+            <div id="modify_orders_table_header" class="users_table" style="visibility:hidden">
+                <h3 id="modify_orders_table_title"></h3>
+            </div>
         </div>
     </div>
 </div>

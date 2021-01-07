@@ -40,6 +40,9 @@
                         <span class="sr-only">(current)</span>
                     </a>
                 </li>
+                <li class="nav-item" id="nav-link-orders" style="visibility: hidden">
+                    <a class="nav-link" href="orders.html">Zamówienia</a>
+                </li>
                 <li class="nav-item" id="nav-link-admin" style="visibility: hidden">
                     <a class="nav-link" href="admin.html">Admin</a>
                 </li>
@@ -56,6 +59,27 @@
     </div>
     <div class="row">
         <div class="col-lg-12 text-center">
+            <div class="add_new_user">
+                <h1 class="header_title middle_action_header">Dodaj nowego usera</h1>
+                <div id="message_user"></div>
+                <div class="row new-user-form">
+                    <input type="text" class="textbox" id="new_username" name="new_username" placeholder="Name"/>
+
+                    <input type="password" class="textbox" id="new_password" name="new_password" placeholder="Hasło"/>
+
+                    <input type="text" class="textbox" id="new_email" name="new_email" placeholder="Email"/>
+
+                    <textarea rows="2" cols="20" wrap="soft" class="textbox" id="new_address" name="new_address" placeholder="Adres"></textarea>
+
+                    <select name="new_role" id="new_role">
+                        <option value="0" selected="selected">Not Confirmed</option>
+                        <option value="1">Admin</option>
+                        <option value="2">Regular</option>
+                    </select>
+                    <button type="button" class="btn btn-primary" onClick={AddUser()}>Dodaj użytkownika</button>
+                </div>
+            </div>
+            <br>
             <div id="message_users"></div>
             <button type="button" class="btn btn-primary" onClick={loadUsers()}>Pobierz listę wszystkich użytkowników</button>
             <button type="button" class="btn btn-primary" onClick={loadUsers(true)}>Pobierz listę niezatwierdzonych użytkowników</button>
@@ -65,18 +89,44 @@
             </div>
             <table id="table_modified_users" class="users_table"></table>
 
-            <h1 class="header_title middle_action_header">Dodaj nowego usera</h1>
-            <div id="message_admin"></div>
-            <div class="row new-user-form">
-                <input type="text" class="textbox" id="username" name="username" placeholder="Name"/>
-
-                <input type="password" class="textbox" id="password" name="password" placeholder="Hasło"/>
-
-                <input type="text" class="textbox" id="email" name="email" placeholder="Email"/>
-
-                <input type="text" class="textbox" id="role" name="role" placeholder="Rola">
-
-                <button type="button" class="btn btn-primary" onClick={AddUser()}>Dodaj pozycję</button>
+            <div id="modify_user_container" class="modify_user_container" style="visibility: hidden">
+                <h1 class="header_title middle_action_header">Edytuj usera</h1>
+                <div id="message_user_edit"></div>
+                <div class="row edit-user-form">
+                    <div>
+                        <h3>ID</h3>
+                        <input class="textbox" id="edit_id" name="edit_id" disabled/>
+                    </div>
+                    <div>
+                        <h3>Nazwa</h3>
+                        <input type="text" class="textbox" id="edit_username" name="edit_username" placeholder="Name"/>
+                    </div>
+                    <div>
+                        <h3>Hasło</h3>
+                        <input type="password" class="textbox" id="edit_password" name="edit_password" placeholder="Hasło"/>
+                    </div>
+                    <div>
+                        <h3>Email</h3>
+                        <input type="text" class="textbox" id="edit_email" name="edit_email" placeholder="Email"/>
+                    </div>
+                    <div>
+                        <h3>Adres</h3>
+                        <textarea rows="2" cols="20" wrap="soft" class="textbox" id="edit_address" name="edit_address" placeholder="Adres"></textarea>
+                    </div>
+                    <div>
+                        <h3>Rola</h3>
+                        <select name="edit_role" id="edit_role">
+                            <option value="0">Użytkownik</option>
+                            <option value="1">Admin</option>
+                            <option value="2">Moderator</option>
+                            <option value="3">Blocked</option>
+                        </select>
+                    </div>
+                    <div>
+                        <h3>Zakończ edycję</h3>
+                        <button type="button" class="btn btn-primary" onClick={ModifyUser()}>Zapisz użytkownika</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

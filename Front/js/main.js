@@ -1,12 +1,14 @@
 function login() {
-    var url = "http://localhost:8080/login";
+    var url = "http://localhost:8080/login?XDEBUG_SESSION_START=1";
     var username = document.getElementById('username').value,
         password = document.getElementById('password').value;
 
     http_request = new XMLHttpRequest();
     http_request.onload = function (xhr) {
         if (xhr.target.status == 200) {
-            let role = xhr.target.response.replace(/[\[\]']+/g,'');
+            let response = JSON.parse(xhr.target.response);
+            let role = response['role'].replace(/[\[\]']+/g,'');
+            document.cookie = "user_id=" + response['user_id'];
             document.cookie = "username=" + username;
             document.cookie = "password=" + password;
             document.cookie = "role=" + role;
@@ -73,6 +75,7 @@ function addProtectedResources(page) {
         //guest
         document.getElementById("nav-link-admin").style.visibility = "hidden";
         document.getElementById("nav-link-users").style.visibility = "hidden";
+        document.getElementById("nav-link-orders").style.visibility = "hidden";
         document.getElementById("div_login").style.visibility = "visible";
         document.getElementById("div_register").style.visibility = "visible";
         document.getElementById("div_logout").style.visibility = "hidden";
@@ -87,6 +90,7 @@ function addProtectedResources(page) {
             //user
             document.getElementById("nav-link-admin").style.visibility = "hidden";
             document.getElementById("nav-link-users").style.visibility = "hidden";
+            document.getElementById("nav-link-orders").style.visibility = "hidden";
             document.getElementById("div_login").style.visibility = "hidden";
             document.getElementById("div_register").style.visibility = "hidden";
             document.getElementById("div_logout").style.visibility = "visible";
@@ -98,6 +102,7 @@ function addProtectedResources(page) {
             //admin
             document.getElementById("nav-link-admin").style.visibility = "visible";
             document.getElementById("nav-link-users").style.visibility = "visible";
+            document.getElementById("nav-link-orders").style.visibility = "visible";
             document.getElementById("div_login").style.visibility = "hidden";
             document.getElementById("div_register").style.visibility = "hidden";
             document.getElementById("div_logout").style.visibility = "visible";
