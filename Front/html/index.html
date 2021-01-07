@@ -38,6 +38,9 @@
                 <li class="nav-item" id="nav-link-users" style="visibility: hidden">
                     <a class="nav-link" href="users.html">Użytkownicy</a>
                 </li>
+                <li class="nav-item" id="nav-link-orders" style="visibility: hidden">
+                    <a class="nav-link" href="orders.html">Zamówienia</a>
+                </li>
                 <li class="nav-item" id="nav-link-admin" style="visibility: hidden">
                     <a class="nav-link" href="admin.html">Admin</a>
                 </li>
@@ -83,8 +86,8 @@
         <div class="col-lg-12 text-center">
             <h1 class="mt-5 header_title">Wirtualne Schronisko</h1>
             <div id="message_dashboard"></div>
-            <button id="button-book-list" type="button" class="btn btn-primary" onClick={loadFromApi()} style="visibility: hidden">Pobierz aktualną listę książek</button>
-            <table id="table_books" class="animals_table" >
+            <button id="button-book-list" type="button" class="btn btn-primary" onClick={loadFromApi()} style="visibility: hidden">Pobierz aktualną listę zwierząt</button>
+            <table id="table_animals" class="animals_table" >
             </table>
         </div>
     </div>
