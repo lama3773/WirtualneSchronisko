@@ -2,7 +2,7 @@ package Spring.Exceptions;
 
 import java.util.Date;
 
-public class ExceptionResponse {
+public class ExceptionResponse extends Throwable {
     private Date timestamp;
     private String message;
     private String details;

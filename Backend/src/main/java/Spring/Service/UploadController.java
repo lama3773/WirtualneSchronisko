@@ -1,34 +1,47 @@
 package Spring.Service;
 
+import Spring.Entity.Animals;
+import Spring.Entity.AnimalsRepository;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 @RestController
 public class UploadController {
-    @CrossOrigin
-    @PostMapping("/upload")
-    protected String doUpload(@RequestParam("file") MultipartFile file) {
-        // FOR PROPER USE
-        String relativeFilePath = "/uploads/" + file.getOriginalFilename();
-        String realPathToUploads = "D:\\PK\\ZTP\\Projekt\\Backend\\uploads\\";
-        String realPathFile = "D:\\PK\\ZTP\\Projekt\\Backend\\uploads\\" + file.getOriginalFilename();
-        Path root = Paths.get(realPathToUploads);
+    private final AnimalsRepository animalsRepository;
 
+    public UploadController(AnimalsRepository animalsRepository) {
+        this.animalsRepository = animalsRepository;
+    }
+    @CrossOrigin
+    @PostMapping("/upload/{id}")
+    protected void doUpload(@RequestParam("file") MultipartFile file, @PathVariable Integer id) {
         try {
-            if (!new File(realPathToUploads).exists()) {
-                new File(realPathToUploads).mkdir();
-            }
-            InputStream inputStream = file.getInputStream();
-            Files.copy(inputStream, root.resolve(realPathFile), StandardCopyOption.REPLACE_EXISTING);
+            byte [] byteArr=file.getBytes();
+            Animals animal = animalsRepository.findItemById(id);
+
+            animal.setImage(byteArr);
+            animalsRepository.save(animal);
+
         } catch (Exception e) {
             System.out.println(e);
         }
-        // END
-        return relativeFilePath;
+
+        // FOR PROPER USE - SAVE IMAGE ON SERVER PUBLIC DIR AND HOLD ONLY PATH IN DB
+//        String relativeFilePath = "/uploads/" + file.getOriginalFilename();
+//        String realPathToUploads = "D:\\PK\\ZTP\\Projekt\\Backend\\uploads\\";
+//        String realPathFile = "D:\\PK\\ZTP\\Projekt\\Backend\\uploads\\" + file.getOriginalFilename();
+//        Path root = Paths.get(realPathToUploads);
+//
+//        try {
+//            if (!new File(realPathToUploads).exists()) {
+//                new File(realPathToUploads).mkdir();
+//            }
+//            InputStream inputStream = file.getInputStream();
+//            Files.copy(inputStream, root.resolve(realPathFile), StandardCopyOption.REPLACE_EXISTING);
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//        // END
+//        return relativeFilePath;
     }
 }

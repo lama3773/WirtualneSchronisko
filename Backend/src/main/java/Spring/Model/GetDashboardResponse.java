@@ -1,19 +1,33 @@
 package Spring.Model;
 
-import java.util.HashSet;
+import Spring.Entity.Animals;
+import Spring.Entity.Orders;
+import Spring.Entity.User;
+
+import java.util.List;
 
 public class GetDashboardResponse {
 
-    private HashSet<Book> books;
-    private Book book;
+    private List<Animals> animals;
+    private Animals animal;
+    private Orders order;
+    private User user;
     private int status;
 
-    public GetDashboardResponse(HashSet<Book> books, int status) {
-        this.books = books;
+    public GetDashboardResponse(List<Animals> animals, int status) {
+        this.animals = animals;
         this.status = status;
     }
-    public GetDashboardResponse(Book book, int status) {
-        this.book = book;
+    public GetDashboardResponse(Animals animal, int status) {
+        this.animal = animal;
+        this.status = status;
+    }
+    public GetDashboardResponse(Orders order, int status) {
+        this.order = order;
+        this.status = status;
+    }
+    public GetDashboardResponse(User user, int status) {
+        this.user = user;
         this.status = status;
     }
 }
