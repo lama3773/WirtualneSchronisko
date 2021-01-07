@@ -25,7 +25,7 @@ function loadFromApi(isAdmin) {
                                     "<td class='animal_row'>" + val.name + "</td>" +
                                     "<td class='animal_row'>" + val.breed + "</td>" +
                                     "<td class='animal_row'>" + val.age + "</td>"+
-                                    "<td><button type=\"button\" class=\"btn btn-primary\" onClick={EditAnimal(" + val.id + ")}>Edytuj</button></td>" +
+                                    "<td><button type=\"button\" class=\"btn btn-primary\" onClick={EditAnimalForm(" + val.id + ")}>Edytuj</button></td>" +
                                     "<td><button type=\"button\" class=\"btn btn-primary\" onClick={RemoveAnimal(" + val.id + ")}>Usuń</button></td>" +
                                     "</tr>";
                             }).join('')
@@ -84,8 +84,8 @@ function OrderAnimal(animal_id) {
         }
     };
     const params = {
-        "user_id": user_id,
-        "animal_id": animal_id,
+        "userId": user_id,
+        "animalsId": animal_id,
     }
     http_request.open('POST', url, true);
     http_request.setRequestHeader('Content-type', 'application/json');
@@ -127,7 +127,4 @@ function EditAnimalForm(user_id) {
     } else {
         document.getElementById("message_users_edit").innerHTML = "Edycja użytkowników jest dostępna jedynie dla administratorów."
     }
-}
-function EditAnimal(animal_id) {
-
 }

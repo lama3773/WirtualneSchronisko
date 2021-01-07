@@ -15,11 +15,22 @@
     border-style:none;
 }
 .users_table td {
-    border:1px solid #cccccc;
-    border-top:0;
-    border-collapse: collapse;
+     border:1px solid #cccccc;
+     border-top:0;
+     border-collapse: collapse;
+ }
+.orders_table {
+    width:100%;
+    margin-top:20px;
+}
+th.orders_row {
+    font-size:30px;
 }
 
+td.orders_row {
+    padding-top:20px;
+    font-size:20px;
+}
 th.animal_row {
     font-size:30px;
 }
@@ -36,7 +47,9 @@ td.animal_row {
 .middle_action_header {
     padding:50px;
 }
-
+.new-animal-form {
+    display:block
+}
 .new-animal-form {
     display:block
 }

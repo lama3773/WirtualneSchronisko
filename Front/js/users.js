@@ -26,7 +26,6 @@ function AddUser() {
     http_request.setRequestHeader('Content-type', 'application/json');
     http_request.setRequestHeader("Authorization", "Basic " + btoa(getCookie("username") + ":" + getCookie("password")));
     http_request.send(JSON.stringify(params));
-    // http_request.send(params);
 }
 function ModifyUser() {
     var url = "http://localhost:8080/users/";
