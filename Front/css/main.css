@@ -3,15 +3,28 @@
     margin-top:20px;
 }
 .users_table {
+    border-spacing: 0px;
+    border:1px solid black;
     width:100%;
     margin-top:20px;
 }
+.users_table th {
+    background-color: #007bff;
+    border-color: #007bff;
+    border-spacing: 0px;
+    border-style:none;
+}
+.users_table td {
+    border:1px solid #cccccc;
+    border-top:0;
+    border-collapse: collapse;
+}
 
-th.book_row {
+th.animal_row {
     font-size:30px;
 }
 
-td.book_row {
+td.animal_row {
     padding-top:20px;
     font-size:20px;
 }
@@ -24,7 +37,7 @@ td.book_row {
     padding:50px;
 }
 
-.new-book-form {
+.new-animal-form {
     display:block
 }
 .author_info {
@@ -62,4 +75,17 @@ td.book_row {
     color: white;
     padding: 5px 15px;
     margin-left: 10px;
+}
+.container {
+    max-width: 1250px;
+}
+.animal_image {
+    border-radius: 8px;
+    width: 100px;
+    display: inline-block;
+}
+
+.imageContainer > img:hover {
+    width: 100%;
+    position:absolute;
 }
