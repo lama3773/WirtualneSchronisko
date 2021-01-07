@@ -1,7 +1,7 @@
 package Spring.Entity;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
 public class Orders {
@@ -11,9 +11,7 @@ public class Orders {
 
     private Integer user_id;
 
-    private Integer address_id;
-
-    private String animals_id;
+    private Integer animals_id;
 
     private Date created_at;
 
@@ -23,13 +21,11 @@ public class Orders {
     public Orders(
             Integer id,
             Integer user_id,
-            Integer address_id,
-            String animals_id,
+            Integer animals_id,
             Date created_at
     ) {
         this.id = id;
         this.user_id = user_id;
-        this.address_id = address_id;
         this.animals_id = animals_id;
         this.created_at = created_at;
     }
@@ -50,19 +46,11 @@ public class Orders {
         this.user_id = user_id;
     }
 
-    public Integer getAddressId() {
-        return address_id;
-    }
-
-    public void setAddressId(Integer address_id) {
-        this.address_id = address_id;
-    }
-
-    public String getAnimalsId() {
+    public Integer getAnimalsId() {
         return animals_id;
     }
 
-    public void setAnimalsId(String animals_id) {
+    public void setAnimalsId(Integer animals_id) {
         this.animals_id = animals_id;
     }
 
