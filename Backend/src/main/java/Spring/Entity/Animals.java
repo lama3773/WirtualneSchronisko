@@ -16,6 +16,10 @@ public class Animals {
 
     private String image_src;
 
+    private String category;
+
+    private Integer user;
+
     @Lob // for big data objects
     private byte[] image;
 
@@ -28,6 +32,8 @@ public class Animals {
             String breed,
             String age,
             String image_src,
+            Integer user,
+            String category,
             byte[] image
     ) {
         this.id = id;
@@ -35,6 +41,8 @@ public class Animals {
         this.breed = breed;
         this.age = age;
         this.image_src = image_src;
+        this.user = user;
+        this.category = category;
         this.image = image;
     }
 
@@ -80,5 +88,21 @@ public class Animals {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Integer getUser() {
+        return user;
+    }
+
+    public void setUser(Integer user) {
+        this.user = user;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
