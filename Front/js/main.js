@@ -79,12 +79,12 @@ function addProtectedResources(page) {
         document.getElementById("div_login").style.visibility = "visible";
         document.getElementById("div_register").style.visibility = "visible";
         document.getElementById("div_logout").style.visibility = "hidden";
-        document.getElementById("button-book-list").style.visibility = "hidden";
-        document.getElementById("table_books").style.visibility = "hidden";
+        document.getElementById("button-animals-list").style.visibility = "hidden";
+        document.getElementById("table_animals").style.visibility = "hidden";
 
     } else {
-        if (userRole === 'ROLE_2') { //user
-            if (page === "admin") {
+        if (userRole === 'ROLE_0') { //user
+            if (page === "admin" || page === "users" || page === "orders") {
                 window.location = 'index.html';
             }
             //user
@@ -94,8 +94,8 @@ function addProtectedResources(page) {
             document.getElementById("div_login").style.visibility = "hidden";
             document.getElementById("div_register").style.visibility = "hidden";
             document.getElementById("div_logout").style.visibility = "visible";
-            document.getElementById("button-book-list").style.visibility = "visible";
-            document.getElementById("table_books").style.visibility = "visible";
+            document.getElementById("button-animals-list").style.visibility = "visible";
+            document.getElementById("table_animals").style.visibility = "visible";
         }
 
         if (userRole === 'ROLE_1') { //admin
@@ -106,8 +106,25 @@ function addProtectedResources(page) {
             document.getElementById("div_login").style.visibility = "hidden";
             document.getElementById("div_register").style.visibility = "hidden";
             document.getElementById("div_logout").style.visibility = "visible";
-            document.getElementById("button-book-list").style.visibility = "visible";
-            document.getElementById("table_books").style.visibility = "visible";
+            document.getElementById("button-animals-list").style.visibility = "visible";
+            document.getElementById("table_animals").style.visibility = "visible";
+        }
+        if (userRole === 'ROLE_2') { //admin
+            //admin
+            document.getElementById("nav-link-admin").style.visibility = "hidden";
+            document.getElementById("nav-link-users").style.visibility = "hidden";
+            document.getElementById("nav-link-orders").style.visibility = "visible";
+            document.getElementById("div_login").style.visibility = "hidden";
+            document.getElementById("div_register").style.visibility = "hidden";
+            document.getElementById("div_logout").style.visibility = "visible";
+            document.getElementById("button-animals-list").style.visibility = "visible";
+            document.getElementById("table_animals").style.visibility = "visible";
+        }
+
+        if (userRole === 'ROLE_3') {
+            logout();
+            window.location = 'index.html';
+            alert('Blocked');
         }
     }
 }

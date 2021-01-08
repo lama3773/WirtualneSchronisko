@@ -156,9 +156,10 @@ function buildUsersTable(data) {
 
 function getUserFriendlyRole(role) {
     var map = new Map();
-    map.set(0, "Not Confirmed");
+    map.set(0, "Użytkownik");
     map.set(1, "Admin");
-    map.set(2, "Regular");
+    map.set(2, "Moderator");
+    map.set(3, "Blocked");
     $result = map.get(role);
     if ($result == "undefined") {
         return role
