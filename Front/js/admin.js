@@ -60,7 +60,7 @@ function ModifyAnimal() {
             data = data.animal;
             ImageUpload(data.id, "edit_img");
             alert("Zapsiano zwierzę.");
-            loadFromApi();
+            loadFromApi(true);
         } else {
             document.getElementById("message_users").innerHTML = "Wystąpił problem przy próbie edycji zwierzęcia"
         }
